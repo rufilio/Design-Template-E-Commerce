@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in & Sign up Form</title>
+  <link rel="stylesheet" href="/page/assets/style.css" />
+  <script type="module" src="/script.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <div class="box">
+      <div class="inner-box">
+        <div class="forms-wrap">
+
+          <form class="sign-in-form">
+            <div class="logo">
+              <img src="/lgo.png" alt="easyclass" />
+              <h4>RELLO</h4>
+            </div>
+
+            <div class="heading">
+              <h2>Bienvenido de nuevo</h2>
+              <h6>Todavía no estas registrado?</h6>
+              <a href="#" class="toggle">Registrase</a>
+            </div>
+
+            <div class="actual-form">
+              <div class="input-wrap">
+                <input type="text" minlength="4" id="gmailLogin" class="input-field" autocomplete="on" required />
+                <label>Gmail</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="password" minlength="4" id="passwordLogin"  class="input-field" autocomplete="on" required />
+                <label>Contraseña</label>
+              </div>
+
+              <input type="submit" id="submitLogin"  value="Iniciar Sesión" class="sign-btn" />
+
+              <p class="text">
+                ¿Olvidó su contraseña o sus datos de inicio de sesión?
+                <a href="/assets/pages/forgort_password.html">Obtén ayuda para</a> iniciar sesión
+              </p>
+            </div>
+          </form>
+
+          <form class="sign-up-form">
+            <div class="logo">
+              <img src="/lgo.png" alt="easyclass" />
+              <h4>RELLO</h4>
+            </div>
+
+            <div class="heading">
+              <h2>Comenzar</h2>
+              <h6>¿Ya tienes una cuenta?</h6>
+              <a href="#" class="toggle">Iniciar Sesión</a>
+            </div>
+
+            <div class="actual-form">
+    
+
+              <div class="input-wrap">
+                <input type="email" id="gmail" class="input-field" autocomplete="on" required />
+                <label>Gmail</label>
+              </div>
+
+              <div class="input-wrap">
+                <input type="password" id="password" minlength="4" class="input-field" autocomplete="off" required />
+                <label>Contraseña</label>
+              </div>
+
+              <input type="submit" id="submit" value="Crear cuenta" class="sign-btn" />
+
+              <p class="text">
+                Al registrarme, acepto las
+                <a href="#">Términos de servicios</a> y
+                <a href="#">política de privacidad</a>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <div class="carousel"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Javascript file -->
+
+  <script>
+    const inputs = document.querySelectorAll(".input-field");
+    const toggle_btn = document.querySelectorAll(".toggle");
+    const main = document.querySelector("main");
+    const bullets = document.querySelectorAll(".bullets span");
+    const images = document.querySelectorAll(".image");
+
+    inputs.forEach((inp) => {
+      inp.addEventListener("focus", () => {
+        inp.classList.add("active");
+      });
+      inp.addEventListener("blur", () => {
+        if (inp.value != "") return;
+        inp.classList.remove("active");
+      });
+    });
+
+    toggle_btn.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        main.classList.toggle("sign-up-mode");
+      });
+    });
+
+    function moveSlider() {
+      let index = this.dataset.value;
+
+      let currentImage = document.querySelector(`.img-${index}`);
+      images.forEach((img) => img.classList.remove("show"));
+      currentImage.classList.add("show");
+
+      const textSlider = document.querySelector(".text-group");
+      textSlider.style.transform = `translateY(${-(index - 1) * 2.2}rem)`;
+
+      bullets.forEach((bull) => bull.classList.remove("active"));
+      this.classList.add("active");
+    }
+
+    bullets.forEach((bullet) => {
+      bullet.addEventListener("click", moveSlider);
+    });
+  </script>
+
+  
+</body>
+
+</html>
